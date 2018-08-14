@@ -85,6 +85,19 @@ class ProductsController extends Controller
         $p->tag()->attach($request->tags);
         $p->optional()->attach($request->option);
 
+        foreach ($request->photos as $photo) {
+            
+            $photo_new_name = time().$photo->getClientOriginalName();
+
+            $photo->move('uploads/products', $photo_new_name);
+
+            
+            Photo::create([
+                'product_id' => $p->id,
+                'filename' => 'uploads/products/' . $photo_new_name,
+            ]);
+        }
+
         Session::flash('success', 'Product created succesfully');
 
         return redirect()->route('admin.products.index');

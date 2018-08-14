@@ -20,4 +20,8 @@ class Product extends Model
    public function optional(){
    	return $this->belongsToMany('App\Optional');
    }
+   public function gallery()
+   {
+      return $this->hasMany('App\Photo');
+   }
 }

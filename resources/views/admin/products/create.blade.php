@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
-	<div class="row">
-		<div class="col-8 offset-2">
+
 
 			@include('session.success')
 			@include('session.error')
@@ -25,12 +23,17 @@
 						</div>
 
 						<div class="form-group">
+			                <label for="featured">Product photos (can attach more than one)</label>
+			                <input type="file" name="photos[]" multiple class="form-control">
+			            </div>
+
+						<div class="form-group">
 							<label for="category">Select subcategory</label>
 							<select name="category_id" id="category" class="form-control">
 								
 								@foreach($categories as $category)
 							  
-							  	<option value="{{ $category->id }}">{{ $category->name }}</option>
+							  	<option value="{{ $category->id }}">{{ $category->category->name }}-{{ $category->name }}</option>
 							  	@endforeach
 							</select>
 						</div>
@@ -86,9 +89,6 @@
 					</form>
 				</div>
 			</div>			
-		</div>
-	</div>
-</div>
 
 
 @stop
