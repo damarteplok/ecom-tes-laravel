@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Tag;
 use App\SubCategory;
 use App\Optional;
+use App\Profile;
+use App\Photo;
 
 class ProductsController extends Controller
 {
@@ -39,15 +41,14 @@ class ProductsController extends Controller
         //
         $catagories = SubCategory::all();
         $tags = Tag::all();
-        $p = Optional::all();
         
-        if($catagories->count()==0 || $tags->count() == 0 || $p->count() == 0)
+        if($catagories->count()==0 || $tags->count() == 0)
         {
             Session::flash('info', 'must have one sub cat or tag');
             return redirect()->back();
         }
 
-        return view('admin.products.create')->with('categories', $catagories)->with('tags', $tags)->with('option', $p);
+        return view('admin.products.create')->with('categories', $catagories)->with('tags', $tags);
     }
 
     /**
@@ -65,8 +66,13 @@ class ProductsController extends Controller
             'image' => 'required|image|mimes:jpg,jpeg,bmp,png|max:2000',
             'description' => 'required',
             'price' => 'required',
-            'option' => 'required',
-            'category_id' => 'required' 
+            
+            'category_id' => 'required' ,
+            'brand' => 'required',
+            'poin' => 'required',
+            'status' => 'required',
+            'pabrik_product' => 'required',
+            'kode_product' => 'required'
 
         ]);
 
@@ -79,11 +85,12 @@ class ProductsController extends Controller
             'description' => $request->description,
             'image' => 'uploads/products/' . $img_new_name,
             'price' => $request->price,
-            'sub_category_id' => $request->catagory_id
+            'sub_category_id' => $request->category_id,
+            'status' => $request->status
 
         ]);
+
         $p->tag()->attach($request->tags);
-        $p->optional()->attach($request->option);
 
         foreach ($request->photos as $photo) {
             
@@ -98,9 +105,19 @@ class ProductsController extends Controller
             ]);
         }
 
+        Profile::create([
+
+            'product_id' => $p->id,
+            'poin' => $request->poin,
+            'brand' => $request->brand,
+            'pabrik_product' => $request->pabrik_product,
+            'kode_product' => $request->kode_product
+
+        ]);
+
         Session::flash('success', 'Product created succesfully');
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -124,8 +141,14 @@ class ProductsController extends Controller
     {
         //
         $p = Product::find($id);
+        $t = Tag::all();
+        $profile = $p->profile;
+        $s = SubCategory::all();
 
-        return view('admin.products.edit')->with('p', $p);
+        return view('admin.products.edit')->with('p', $p)
+        ->with('t', $t)
+        ->with('profile', $profile)
+        ->with('s', $s);
     }
 
     /**
@@ -143,11 +166,18 @@ class ProductsController extends Controller
             'name' => 'required',
             'image' => 'required|image|mimes:jpg,jpeg,bmp,png|max:2000',
             'description' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'sub_category_id' => 'required',
+            'status' => 'required',
+            'brand' => 'required',
+            'kode_product' => 'required',
+            'pabrik_product' => 'required',
+            'poin' => 'required'
 
         ]);
 
         $p = Product::find($id);
+        $a = $p->gallery;
 
         if($request->hasFile('image'))
         {
@@ -157,14 +187,27 @@ class ProductsController extends Controller
             $p->image = 'uploads/products/' . $img_new_name;
         }
 
+        $pro = $p->profile;
+
         $p->name = $request->name;
         $p->description = $request->description;
         $p->price =  $request->price;
+        $p->status = $request->status;
+        $p->sub_category_id = $request->sub_category_id;
         $p->save();
+
+        $pro->brand =  $request->brand;
+        $pro->kode_product =  $request->kode_product;
+        $pro->pabrik_product =  $request->pabrik_product;
+        $pro->poin =  $request->poin;
+
+        $pro->save();
+
+        $p->tag()->sync($request->tag);
 
         Session::flash('success', 'success edit products');
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('products.index');
 
     }
 
@@ -177,10 +220,24 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
-        Product::destroy($id);
+        $p = Product::find($id);
+        
+        foreach($p->gallery as $a)
+        {
+            $a->forceDelete();
+        }
+
+        $p->profile->delete();
+
+        foreach($p->optional as $a)
+        {
+            $a->forceDelete();
+        }
+
+        $p->delete();
 
         Session::flash('success', 'Product Deleted');
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('products.index');
     }
 }

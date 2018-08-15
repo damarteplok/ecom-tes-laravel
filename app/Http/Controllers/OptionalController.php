@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Optional;
+use App\Product;
 use Session;
 
 class OptionalController extends Controller
@@ -32,7 +33,7 @@ class OptionalController extends Controller
     public function create()
     {
         //
-        return view('admin.optional.create');
+        return view('admin.optional.create')->with('p', Product::all());
     }
 
     /**
@@ -47,12 +48,14 @@ class OptionalController extends Controller
         $this->validate($request, [
 
             'name' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'product_id' => 'required'
 
         ]);
 
         Optional::create([
 
+            'product_id' => $request->product_id,
             'name' => $request->name,
             'description' => $request->description
 
@@ -85,7 +88,8 @@ class OptionalController extends Controller
         //
         $p = Optional::find($id);
 
-        return view('admin.optional.edit')->with('p', $p);
+        return view('admin.optional.edit')->with('p', $p)
+        ->with('s', Product::all());
     }
 
     /**
@@ -101,13 +105,15 @@ class OptionalController extends Controller
         $this->validate($request, [
 
             'name' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'product_id' => 'required'
 
         ]);
 
         $t = Optional::find($id);
         $t->name = $request->name;
         $t->description = $request->description;
+        $t->product_id = $request->product_id;
         $t->save();
 
         Session::flash('success', 'Optional Updated');

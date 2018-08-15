@@ -26,6 +26,7 @@
 					      <th scope="col">Image</th>
 					      <th scope="col">Name</th>
 					      <th scope="col">Price</th>
+					      <th scope="col">Stock</th>
 					      <th scope="col">Edit</th>
 					      <th scope="col">Delete</th>
 					    </tr>
@@ -42,7 +43,21 @@
 						    	<td><img src="{{ $p->image }}" alt="{{ $p->name }}" width="90px" height="auto"></td>
 						    	<td class="align-middle">{{ $p->name }}</td>
 						    	<td class="align-middle">{{ $p->price }}</td>
+
+								@if($p->status == 0)
+
+
+						    	<td class="align-middle">Out Of Stock</td>
+
+						    	@elseif($p->status == 1)
 						      
+						      	<td class="align-middle">In Stock</td>
+
+						      	@else
+
+						      	<td class="align-middle">Pre Order</td>
+
+						      	@endif
 
 						      	<td class="align-middle">
 						      		
@@ -78,7 +93,7 @@
 
 						@else
 
-								<th colspan="5" class="text-center"> No Products</th>
+								<th colspan="6" class="text-center"> No Products</th>
 
 						@endif
 					      

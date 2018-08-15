@@ -18,6 +18,32 @@
 						</div>
 
 						<div class="form-group">
+							<label for="name">brand</label>
+							<input type="text" name="brand" class="form-control">
+						</div>
+
+						<div class="form-group">
+							<label for="name">poin</label>
+							<input type="text" name="poin" class="form-control">
+						</div>
+
+						<div class="form-group">
+							<label for="name">pabrik-kode</label>
+							<input type="text" name="pabrik_product" class="form-control">
+						</div>
+
+						<div class="form-group">
+							<label for="name">kode-product</label>
+							<input type="text" name="kode_product" class="form-control">
+						</div>
+						
+						{{-- <div class="form-group">
+							<label for="name">pilihan product</label>
+							<input type="text" name="pilihan" class="form-control">
+						</div> --}}
+
+
+						<div class="form-group">
 							<label for="image">Featured image</label>
 							<input type="file" name="image" class="form-control">
 						</div>
@@ -42,6 +68,7 @@
 							<label for="price">Price</label>
 							<input type="text" name="price" class="form-control">
 						</div>
+						
 						<div class="form-group">
 
 							<label for="tags">Select tags</label>
@@ -59,21 +86,16 @@
 						</div>
 
 						<div class="form-group">
+							<label for="category">Status</label>
+							<select name="status" id="status" class="form-control">
 
-							<label for="tags">Select Option</label>
-							<div class="d-flex flex-wrap">
-			 
-
-							@foreach($option as $op)
-								<div class="custom-checkbox m-1">
-									<label><input type="checkbox" value="{{ $op->id }}" name="option[]">{{ $op->description }}</label>
-								</div>
-
-							@endforeach
-							</div>
-							
+								<option value="0">Out of Stock</option>
+								<option value="1">In Stock</option>
+							  	<option value="2">Pre Order</option>
+							  	
+							  
+							</select>
 						</div>
-
 
 						<div class="form-group">
 							<label for="description">Description</label>

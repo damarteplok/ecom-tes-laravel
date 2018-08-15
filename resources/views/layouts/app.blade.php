@@ -100,14 +100,15 @@
                                     Tag
                                     </a>
                                 </li>
+                                
+                                <li><a href="{{ route('products.index') }}">Product</a>
+                                </li>
+                                
                                 <li>
                                     <a href="{{ route('optional.index') }}">
                                     Optional
                                     </a>
                                 </li>
-                                <li><a href="{{ route('products.index') }}">Product</a>
-                                </li>
-                                
                                 
                                                                                                
                               </ul>

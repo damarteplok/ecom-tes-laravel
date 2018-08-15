@@ -8,7 +8,7 @@ class Product extends Model
 {
     //
    protected $fillable=[
-   	'name','price','image','description','subcategory_id'
+   	'name','price','image','description','sub_category_id', 'status'
    ];
 
    public function subCategory(){
@@ -18,10 +18,14 @@ class Product extends Model
    	return $this->belongsToMany('App\Tag');
    }
    public function optional(){
-   	return $this->belongsToMany('App\Optional');
+   	return $this->hasMany('App\Optional');
    }
    public function gallery()
    {
       return $this->hasMany('App\Photo');
+   }
+   public function profile()
+   {
+      return $this->hasOne('App\Profile');
    }
 }

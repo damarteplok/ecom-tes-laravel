@@ -2,9 +2,7 @@
 @section('content')
 
 
-<div class="container">
-	<div class="row">
-		<div class="col-8 offset-2">
+
 
 @include('session.error')
 
@@ -21,15 +19,85 @@
 			</div>
 
 			
-
 			<div class="form-group">
 				<label for="image">Featured image</label>
 				<input type="file" name="image" class="form-control">
 			</div>
 
 			<div class="form-group">
+				<label for="name">Status</label>
+				<select name="status" id="status" class="form-control">
+
+					<option value="0">Out of Stock</option>
+					<option value="1">In Stock</option>
+				  	<option value="2">Pre Order</option>
+				  	
+				  
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="category">Select subcategory</label>
+				<select name="sub_category_id" id="category" class="form-control">
+					
+					@foreach($s as $category)
+				  
+				  	<option value="{{ $category->id }}"
+				  		
+						@if($p->sub_category_id == $category->id)
+								selected
+						@endif
+						
+
+				  		>{{ $category->name }}</option>
+				  	@endforeach
+				</select>
+			</div>
+
+
+			<div class="form-group">
 				<label for="price">Price</label>
 				<input type="text" name="price" class="form-control" value="{{ $p->price }}">
+			</div>
+
+			<div class="form-group">
+				<label for="name">Brand</label>
+				<input type="text" name="brand" class="form-control" value="{{ $profile->brand }}">
+			</div>
+
+			<div class="form-group">
+				<label for="name">Poin</label>
+				<input type="text" name="poin" class="form-control" value="{{ $profile->poin }}">
+			</div>
+
+			<div class="form-group">
+				<label for="name">Pabrik-kode</label>
+				<input type="text" name="pabrik_product" class="form-control" value="{{ $profile->pabrik_product }}">
+			</div>
+
+			<div class="form-group">
+				<label for="name">Kode-product</label>
+				<input type="text" name="kode_product" class="form-control" value="{{ $profile->kode_product }}">
+			</div>
+
+			<div class="form-group">
+
+				<label for="tags">Select tags</label>
+				<div class="d-flex flex-wrap">
+				@foreach($t as $tag)
+					<div class="custom-checkbox m-1">
+						<label><input type="checkbox" value="{{ $tag->id }}" name="tag[]"
+							@foreach($p->tag as $ta)
+							@if($tag->id == $ta->id)
+								checked
+							@endif
+							@endforeach
+							>{{ $tag->tag }}</label>
+					</div>
+
+				@endforeach
+				</div>
+				
 			</div>
 
 
@@ -49,9 +117,7 @@
 </div>
 
 
-</div>
-</div>
-</div>
+
 
 @stop
 

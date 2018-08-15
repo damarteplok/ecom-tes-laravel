@@ -16,7 +16,8 @@ class CreateOptionalsTable extends Migration
         Schema::create('optionals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->text('description');
+            $table->string('description');
+            $table->integer('product_id');
             $table->timestamps();
         });
     }

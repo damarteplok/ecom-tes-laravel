@@ -13,8 +13,26 @@
 			{{ method_field('PUT') }}
 
 			<div class="form-group">
-				<label for="name">Name</label>
+				<label for="name">Name Option</label>
 				<input type="text" value="{{ $p->name }}" name="name" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="product">Select product</label>
+				<select name="product_id" id="product_id" class="form-control">
+					
+					@foreach($s as $a)
+				  
+				  	<option value="{{ $a->id }}"
+				  		
+						@if($p->product_id == $a->id)
+								selected
+						@endif
+						
+
+				  		>{{ $a->name }}</option>
+				  	@endforeach
+				</select>
 			</div>
 
 			<div class="form-group">
@@ -24,7 +42,7 @@
 
 			<div class="form-group">
 				<div class="text-center">
-					<button class="btn btn-success" type="submit">update description</button>
+					<button class="btn btn-success" type="submit">update option</button>
 				</div>
 			</div>
 

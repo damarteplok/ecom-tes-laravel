@@ -21,6 +21,7 @@
 	  
 	  <thead>
 	    <tr>
+	      <th scope="col">Product Name</th>		
 	      <th scope="col">Optional Name</th>
 	      <th scope="col">Description</th>
 	      <th scope="col">Edit</th>
@@ -36,6 +37,9 @@
 	  	@foreach($p as $t)
 	    
 	    <tr>
+	      <td>
+	      	{{ $t->product->name }}
+	      </td>
 	      <td>
 	      	{{ $t->name }}
 	      </td>

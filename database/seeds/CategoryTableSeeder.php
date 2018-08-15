@@ -13,16 +13,21 @@ class CategoryTableSeeder extends Seeder
     {
         
         $p1 = [
-        	'name' => 'man',
+        	'name' => 'K-Pop',
         	
         ];
 
         $p2 = [
-        	'name' => 'woman',
+        	'name' => 'J-Pop',
         	
+        ];
+        $p3 = [
+            'name' => 'Indonesia',
+            
         ];
 
         App\Category::create($p1);
         App\Category::create($p2);
+        App\Category::create($p3);
     }
 }

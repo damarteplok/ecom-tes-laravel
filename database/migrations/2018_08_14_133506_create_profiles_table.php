@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductOptionTable extends Migration
+class CreateProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateProductOptionTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_option', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id');
-            $table->integer('optional_id');
+            $table->integer('poin');
+            $table->string('brand');
+            $table->string('pabrik_product');
+            $table->string('kode_product');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateProductOptionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_option');
+        Schema::dropIfExists('profiles');
     }
 }

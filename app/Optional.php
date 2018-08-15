@@ -10,11 +10,12 @@ class Optional extends Model
     protected $fillable = [
 
     	'name',
-    	'description'
+    	'description',
+    	'product_id'
 
     ];
 
     public function product(){
-    	return $this->belongsToMany('App\Product');
+    	return $this->belongsTo('App\Product');
     }
 }
