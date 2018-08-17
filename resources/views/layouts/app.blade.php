@@ -40,7 +40,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item active">
+                            {{-- <li class="nav-item active">
                                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                                 
                             </li>
@@ -55,7 +55,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
+                            </li> --}}
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -109,6 +109,12 @@
                                     Optional
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="{{ route('photo.index') }}">
+                                    Gallery Products
+                                    </a>
+                                </li>
                                 
                                                                                                
                               </ul>
@@ -130,10 +136,7 @@
                           <a data-toggle="collapse" href="#formsExamples3" aria-expanded="true" class="">Customers</a>
                           <div class="collapse in" id="formsExamples3" aria-expanded="true" style="">
                               <ul>
-                                <li><a href="{{-- {{ route('tags') }} --}}">Member</a>
-                                </li>
-
-                                <li><a href="{{-- {{ route('tags') }} --}}">Groups</a>
+                                <li><a href="{{ route('customer.index') }}">Member</a>
                                 </li>
                                                                                                
                               </ul>

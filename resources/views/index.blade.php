@@ -1,4 +1,4 @@
-@extends('layouts.front')
+{{-- @extends('layouts.front')
 
 @section('page')
 
@@ -47,7 +47,7 @@
 
             <div class="col-lg-12">
                 {{ $products->links() }}
-            </div>
+            </div> --}}
 
             {{-- <div class="col-lg-12">
 
@@ -70,8 +70,221 @@
 
             </div> --}}
 
-        </div>
+{{--         </div>
     </div>
+    </div>
+</div>
+
+@endsection --}}
+
+@extends('layouts.master')
+
+@section('content')
+
+<div class="card">
+    <div class="card-header text-center">
+        New Release
+    </div>
+    <div class="card-body">
+        @if($tag->count() > 0)
+            <div class="card-deck">
+                
+                    @foreach($tag as $t)
+                    <div class="card">
+                        <a href="">
+                        <img class="card-img-top" style="width: 13rem; height: 12rem;" src="{{ asset($t->image) }}" alt="Card image cap">
+                        </a>
+                        <div class="card-body text-center">
+                            <a href="">
+                            <h5 class="card-title" >
+                                {{ $t->name }}
+                            </h5>
+                            </a>
+                            <p class="card-text" style="color: #900">
+                                
+                                idr-{{ $t->price }}
+                            </p>
+
+                            @if($t->status == 1)
+
+                            <p class="card-text text-muted">
+                                
+                                In Stock
+                            </p>
+                            @elseif($t->status == 0)
+
+                            <p class="card-text text-muted">
+                                
+                                Out Of Stock
+                            </p>
+
+                            @else
+
+                            <p class="card-text text-muted">
+                                
+                                Pre Order
+                            </p>
+                            
+
+                            @endif
+
+
+                        </div>
+                        <div class="card-footer text-left">
+                             <a href="{{ route('cart.rapid.add', ['id' => $t->id]) }}" class="btn btn-primary btn-sm">Add To Cart</a>
+                        </div>
+                    </div>
+                    @endforeach
+                
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                
+                {{$tag->appends(['p1' => $tag->currentPage()])->links()}}
+                
+                {{-- {!! $tag->render() !!} --}}    
+            </div>
+            
+        @else
+        <h5>No Post Yet</h5>
+        @endif
+    </div>
+</div>
+
+<div class="card my-3">
+    <div class="card-header text-center">
+        Hot Deal
+    </div>
+    <div class="card-body">
+        @if($tag2->count() > 0)
+            <div class="card-deck">
+                
+                    @foreach($tag2 as $t)
+                    
+                    <div class="card">
+                        <a href="">
+                        <img class="card-img-top" src="{{ asset($t->image) }}" alt="Card image cap">
+                        </a>
+                        <div class="card-body text-center">
+                            <a href="">
+                            <h5 class="card-title" >
+                                {{ $t->name }}
+                            </h5>
+                            </a>
+                            <p class="card-text" style="color: #900">
+                                
+                                idr-{{ $t->price }}
+                            </p>
+
+                            @if($t->status == 1)
+
+                            <p class="card-text text-muted">
+                                
+                                In Stock
+                            </p>
+                            @elseif($t->status == 0)
+
+                            <p class="card-text text-muted">
+                                
+                                Out Of Stock
+                            </p>
+
+                            @else 
+
+                            <p class="card-text text-muted">
+                                
+                                Pre Order
+                            </p>
+
+                            @endif
+
+
+                        </div>
+                        <div class="card-footer text-left">
+                             <a href="{{ route('cart.rapid.add', ['id' => $t->id]) }}" class="btn btn-primary btn-sm">Add To Cart</a>
+                        </div>
+                    </div>
+                    
+                    @endforeach
+                
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+               {{--  {!! $tag2->render() !!}   --}}
+
+               {{$tag2->appends(['p2' => $tag2->currentPage()])->links()}}  
+            </div>
+            
+        @else
+        <h5>No Post Yet</h5>
+        @endif
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header text-center">
+        Lastest
+    </div>
+    <div class="card-body">
+        @if($product->count() > 0)
+            <div class="card-columns">
+                
+                    @foreach($product as $t)
+                    
+                    <div class="card" style="max-width: 16rem;">
+                        <a href="">
+                        <img class="card-img-top" style="width: 13.4rem; height: 12rem;" src="{{ asset($t->image) }}" alt="Card image cap">
+                        </a>
+                        <div class="card-body text-center">
+                            <a href="">
+                            <h5 class="card-title" >
+                                {{ $t->name }}
+                            </h5>
+                            </a>
+                            <p class="card-text" style="color: #900">
+                                
+                                idr-{{ $t->price }}
+                            </p>
+
+                            @if($t->status == 1)
+
+                            <p class="card-text text-muted">
+                                
+                                In Stock
+                            </p>
+                            @elseif($t->status == 0)
+
+                            <p class="card-text text-muted">
+                                
+                                Out Of Stock
+                            </p>
+
+                            @else 
+
+                            <p class="card-text text-muted">
+                                
+                                Pre Order
+                            </p>
+
+                            @endif
+
+
+                        </div>
+                        <div class="card-footer text-left">
+                             <a href="{{ route('cart.rapid.add', ['id' => $t->id]) }}" class="btn btn-primary btn-sm">Add To Cart</a>
+                        </div>
+                    </div>
+                    
+                    @endforeach
+                
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                {{-- {!! $product->render() !!}  --}}
+
+                {{$product->appends(['p3' => $product->currentPage()])->links()}}   
+            </div>
+            
+        @else
+        <h5>No Post Yet</h5>
+        @endif
     </div>
 </div>
 

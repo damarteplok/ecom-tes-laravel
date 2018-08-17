@@ -25,6 +25,7 @@
 					    <tr>
 					      <th scope="col">Image</th>
 					      <th scope="col">Name</th>
+					      <th scope="col">Kode</th>
 					      <th scope="col">Price</th>
 					      <th scope="col">Stock</th>
 					      <th scope="col">Edit</th>
@@ -42,6 +43,7 @@
 						    <tr>
 						    	<td><img src="{{ $p->image }}" alt="{{ $p->name }}" width="90px" height="auto"></td>
 						    	<td class="align-middle">{{ $p->name }}</td>
+						    	<td class="align-middle">{{ $p->profile->kode_product }}</td>
 						    	<td class="align-middle">{{ $p->price }}</td>
 
 								@if($p->status == 0)
@@ -93,7 +95,7 @@
 
 						@else
 
-								<th colspan="6" class="text-center"> No Products</th>
+								<th colspan="7" class="text-center"> No Products</th>
 
 						@endif
 					      

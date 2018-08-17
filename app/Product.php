@@ -28,4 +28,8 @@ class Product extends Model
    {
       return $this->hasOne('App\Profile');
    }
+   public function order()
+   {
+      return $this->belongsToMany('App\Order');
+   }
 }

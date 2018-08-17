@@ -106,6 +106,71 @@ Route::resource('category', 'CategoryController');
 Route::resource('subcategory', 'SubCategoryController');
 Route::resource('tag', 'TagController');
 Route::resource('optional', 'OptionalController');
+Route::resource('customer', 'CustomerController');
+Route::resource('order', 'OrderController');
+
+Route::get('photo/gallery/', [
+
+	'uses' => 'PhotoController@index',
+	'as' => 'photo.index'
+ 
+]);
+
+Route::get('photo/gallery/delete/{id}', [
+
+	'uses' => 'PhotoController@destroy',
+	'as' => 'photo.destroy'
+ 
+]);
+
+Route::get('photo/view/{id}', [
+
+	'uses' => 'PhotoController@index2',
+	'as' => 'photo.index2'
+ 
+]);
+
+Route::get('photo/add/{id}', [
+
+	'uses' => 'PhotoController@create',
+	'as' => 'photo.create'
+ 
+]);
+
+Route::get('photo/delete/{id}', [
+
+	'uses' => 'PhotoController@destroy2',
+	'as' => 'photo.destroy2'
+ 
+]);
+
+Route::post('photo/store/', [
+
+	'uses' => 'PhotoController@store',
+	'as' => 'photo.store'
+ 
+]);
+
+
+Route::get('photo/edit/{id}', [
+
+	'uses' => 'PhotoController@edit',
+	'as' => 'photo.edit'
+ 
+]);
+
+Route::post('photo/update/{id}', [
+
+	'uses' => 'PhotoController@update',
+	'as' => 'photo.update'
+ 
+]);
+
+Route::get('customer/history/{id}', [
+
+	'uses' => 'CustomerController@history',
+	'as' => 'customer.view'
+]);
 
 
 

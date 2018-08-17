@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Cart;
 use App\Product;
+use App\Category;
 use Session;
 
 
@@ -37,7 +38,8 @@ class ShoppingController extends Controller
     public function cart()
     {
 
-    	return view('cart');
+    	return view('cart')
+        ->with('category', Category::all());
     }
     public function cart_delete($id)
     {
@@ -85,7 +87,7 @@ class ShoppingController extends Controller
 
     	Session::flash('success', 'Product added to cart');
 
-    	return redirect()->route('cart');
+    	return redirect()->route('index');
 
     }
 }

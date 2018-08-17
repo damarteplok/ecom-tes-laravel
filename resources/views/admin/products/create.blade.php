@@ -92,6 +92,7 @@
 								<option value="0">Out of Stock</option>
 								<option value="1">In Stock</option>
 							  	<option value="2">Pre Order</option>
+							  	<option value="3">Hot Deal</option>
 							  	
 							  
 							</select>

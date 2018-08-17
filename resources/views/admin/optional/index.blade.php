@@ -22,6 +22,7 @@
 	  <thead>
 	    <tr>
 	      <th scope="col">Product Name</th>		
+	      <th scope="col">Kode Product</th>
 	      <th scope="col">Optional Name</th>
 	      <th scope="col">Description</th>
 	      <th scope="col">Edit</th>
@@ -39,6 +40,9 @@
 	    <tr>
 	      <td>
 	      	{{ $t->product->name }}
+	      </td>
+	      <td>
+	      	{{ $t->product->profile->kode_product }}
 	      </td>
 	      <td>
 	      	{{ $t->name }}
@@ -80,7 +84,7 @@
 	    {!! $p->render() !!}
 	    @else
 
-	    	<th colspan="5" class="text-center"> No Optional </th>
+	    	<th colspan="6" class="text-center"> No Optional </th>
 
 	    @endif
 	      

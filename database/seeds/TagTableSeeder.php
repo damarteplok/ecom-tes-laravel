@@ -27,6 +27,16 @@ class TagTableSeeder extends Seeder
         	
         ];
 
+        $p5 = [
+            'tag' => 'yg',
+            
+        ];
+
+        $p6 = [
+            'tag' => 'blackpink',
+            
+        ];
+
         $p4 = [
         	'tag' => 'dvd',
         	
@@ -38,6 +48,8 @@ class TagTableSeeder extends Seeder
         App\Tag::create($p2);
         App\Tag::create($p3);
         App\Tag::create($p4);
+        App\Tag::create($p5);
+        App\Tag::create($p6);
         
     }
 }

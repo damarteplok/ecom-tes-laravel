@@ -82,11 +82,25 @@
     <div class="row pt120">
         <div class="col-lg-8 col-lg-offset-2">
             <div class="heading align-center mb60">
-                <h4 class="h1 heading-title">Udemy E-commerce tutorial</h4>
+                <h4 class="h1 heading-title">Absolut-commerce tes 123..</h4>
 
-                <p class="heading-text">Buy books, and we ship to you.
+                <p class="heading-text">Buy cd, dvd, etc, and we ship to you.
                    
                 </p>
+                <ul class="nav justify-content-center">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Active</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                  </li>
+                </ul>
             </div>
         </div>
     </div>
