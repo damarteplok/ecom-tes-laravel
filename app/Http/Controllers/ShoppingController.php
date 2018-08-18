@@ -38,8 +38,7 @@ class ShoppingController extends Controller
     public function cart()
     {
 
-    	return view('cart')
-        ->with('category', Category::all());
+    	return view('cart');
     }
     public function cart_delete($id)
     {

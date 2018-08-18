@@ -45,19 +45,22 @@
 		 <ul class="list-group list-group-flush">
 		 	
 		    <li class="list-group-item px-0">
-				<a href="#">About Us</a>
+				<a href="{{ route('about') }}">About Us</a>
 		    </li>
 		    <li class="list-group-item px-0">
-				<a href="#">FAQ</a>
+				<a href="{{ route('faq') }}">FAQ</a>
 		    </li>
 		    <li class="list-group-item px-0">
-				<a href="#">Term n Conditions</a>
+				<a href="{{ route('term') }}">Term n Conditions</a>
 		    </li>
 		    <li class="list-group-item px-0">
-				<a href="#">Privacy Policy</a>
+				<a href="{{ route('howto') }}">How To Buy</a>
 		    </li>
 		    <li class="list-group-item px-0">
-				<a href="#">Contact Us</a>
+				<a href="{{ route('policy') }}">Privacy Policy</a>
+		    </li>
+		    <li class="list-group-item px-0">
+				<a href="{{ route('contact') }}">Contact Us</a>
 		    </li>
 		    
 		  </ul>

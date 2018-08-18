@@ -3,8 +3,8 @@
 		Category
 	</div>
 	<ul class="list-group list-group-flush">
-		@if($category->count() > 0)
-		@foreach($category as $c)
+		@if($categoryall->count() > 0)
+		@foreach($categoryall as $c)
 	    <li class="list-group-item dropright ">
 	    
 	    <a href="#">{{ $c->name }}</a>

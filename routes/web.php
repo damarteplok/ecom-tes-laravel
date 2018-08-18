@@ -87,8 +87,12 @@ Route::post('/cart/checkout', [
 ]);
 
 
-Route::get('/about', 'PagesController@about');
-Route::get('/contact', 'PagesController@contact');
+Route::get('/about', 'PagesController@about')->name('about');
+Route::get('/contact', 'PagesController@contact')->name('contact');
+Route::get('/faq', 'PagesController@faq')->name('faq');
+Route::get('/policy', 'PagesController@policy')->name('policy');
+Route::get('/term', 'PagesController@term')->name('term');
+Route::get('/howto', 'PagesController@howto')->name('howto');
 
 Route::get('login/facebook', 'Auth\AuthController@redirectToFacebook');
 Route::get('login/facebook/callback', 'Auth\AuthController@getFacebookCallback');

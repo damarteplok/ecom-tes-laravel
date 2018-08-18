@@ -28,7 +28,7 @@ class FrontEndController extends Controller
     	
 
     	return view('index')
-    	->with('category', Category::all())
+    	
     	->with('product', $p)
     	->with('tag', $tag)
     	->with('tag2', $tag2);
