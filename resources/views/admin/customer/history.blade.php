@@ -11,7 +11,7 @@
 
 				<div class="card-header">
 					
-					<span>Customer : {{ $customer->name }}</span>
+					<span>Customer : {{ $customer->name }} History</span>
 					{{-- <a href="{{ route('products.create') }}" class="btn btn-outline-success btn-sm float-right">Add</a> --}}
 
 				</div>
@@ -20,42 +20,56 @@
 
 					@if($order->count() > 0)
 
-					<table class="table table-striped">
+					
 
 
 					  @foreach($order as $o)
 
-					  <caption>Invoice : {{ $o->invoice_creation_date }}</caption>
+					  <p>Invoice : {{ $o->invoice_creation_date }}</p>
+					  	<br>
+						<p>Delivery due date: {{ $o->delivery_due_date }}</p>
+						<br>
+						<p>
+						Payment due date: {{ $o->payment_due_date }}
+						</p>
 					  
+					  
+					<table class="table table-striped">
+
 					  <thead>
 
 					    <tr>
 					      <th scope="col">Item/Desc</th>
 					      <th scope="col">Qty</th>
 					      <th scope="col">@</th>
-					      <th scope="col">Price</th>
-					      
+					      <th scope="col">Total</th>
 					    </tr>
 
 					  </thead>
 					  
 					  <tbody>
-
-					  	@foreach($order->order_product as $ p)
+						@php
+						$aa = 0;
+						@endphp
+					  	@foreach($o->product as $p)
 						   
 						    <tr>
-						    	<td>{{ $p->product->name }}</td>
-						    	<td>{{ $p->qty }}</td>
+						    	<td>{{ $p->name }}</td>
+						    	<td>{{ $p->pivot->quantity }}</td>
 						    	
 
 						      	<td>
-						      		{{ $p->product->price }}
+						      		${{ $p->price }}
 						      	</td>
 
 						      	<td>
-						      		Price
+						      		@php
+						      		
+						      	    $qi = ($p->pivot->quantity) * ($p->price);
+						      		$aa = $qi + $aa;
+						      		@endphp
+						      		$ {{ $qi }}
 						        </td>
-
 
 
 						    </tr>
@@ -64,27 +78,31 @@
 
 						    <tr>
 						    	<th colspan="3">Subtotal</th>
-						    	<td>1231</td>
+						    	<td>$ {{ $aa }}</td>
 						    </tr>
 
 						    <tr>
 						    	<th colspan="2">Tax</th>
-						    	<td>7%</td>
-						    	<td>13213</td>
+						    	<td>0%</td>
+						    	<td>$ {{ $aa }}</td>
 						    </tr>
 
 						    <tr>
 						    	<th colspan="3">Total</th>
-						    	<td>1231</td>
+						    	<td><strong>$ {{ $aa }}</strong>	 </td>
 						    </tr>
 
 						
 					      
 					  </tbody>
 					
-					@endforeach
+					
 					 
 					</table>
+					<hr>
+					<br>
+
+					@endforeach
 					
 					@else
 						<table>

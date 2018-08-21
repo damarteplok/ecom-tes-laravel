@@ -27,7 +27,7 @@
                             </a>
                             <p class="card-text" style="color: #900">
                                 
-                                idr-{{ $p->price }}
+                                ${{ $p->price }}
                             </p>
 
                             @if($p->status == 1)

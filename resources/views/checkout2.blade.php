@@ -90,15 +90,18 @@
 		Delivery Address
 	</div>
 	<div class="card-body">
-		
+		{{ $b->alamat }}
 	</div>
 </div>
 
 <div class="card">
 	<div class="card-header">
-		Pay with
+		Pay with Stripe
 	</div>
 	<div class="card-body">
+        <p>Stripe: The only limit to the maximum amount you can charge a customer is a technical one. The amount value supports up to eight digits (e.g., a value of 99999999 for a USD charge of $999,999.99).</p>
+        <br>
+        <p>4242 4242 4242 4242 (for test)</p>
 		<form action="{{ route('customer.pay') }}" method="POST">
             {{ csrf_field() }}
             <input type="hidden" name="id" value="{{ Auth::user()->id }}">

@@ -124,11 +124,14 @@ class CustomerController extends Controller
         
     }
 
-    public function view($id)
+    public function history($id)
 
     {
+        $c = Customer::find($id);
+        $o = $c->order;
 
-        return view('admin.customer.history');
+        return view('admin.customer.history')->with('order', $o)
+        ->with('customer', $c);
     }
     
 }

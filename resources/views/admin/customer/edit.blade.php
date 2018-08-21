@@ -34,7 +34,7 @@
 
 			<div class="form-group">
 				<div class="text-center">
-					<button class="btn btn-success" type="submit">update category</button>
+					<button class="btn btn-success" type="submit">update customer</button>
 				</div>
 			</div>
 

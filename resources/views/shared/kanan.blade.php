@@ -28,7 +28,7 @@
 		@if(Cart::total() == 0)
 
 		@else
-		idr {{ Cart::total() }}
+		$ {{ Cart::total() }}
 		<a href="{{ route('customer.checkout') }}"><p style="display: inline">checkout</p>
 		</a>
 		@endif

@@ -10,7 +10,9 @@ use Session;
 use Mail;
 use App\Order;
 use App\Product;
+use App\Customer;
 use Carbon\Carbon;
+use Auth;
 
 class CheckoutController extends Controller
 {
@@ -25,7 +27,12 @@ class CheckoutController extends Controller
     			Session::flash('info', 'Your cart is still empty, do some shoping');
     			return redirect()->route('index');
     		}
-    	return view('checkout2');
+
+         Auth::shouldUse('customer') ;  
+         $a = Auth::user()->id;
+         $b = Customer::find($a);
+
+    	return view('checkout2')->with('b', $b);
     }
 
     public function pay()
