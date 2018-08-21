@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+use App\SubCategory;
 use App\Tag;
-
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class FrontEndController extends Controller
 {
@@ -34,8 +35,33 @@ class FrontEndController extends Controller
     	->with('tag2', $tag2);
     }
 
-    public function singleProduct($id)
+    public function index_single_category(Request $request, $id)
     {
-    	return view('single')->with('product', Product::find($id));
+    	$cat = Category::find($id);
+
+    	$category = $cat->subcategory;
+    	
+    	$post = [];
+    	foreach ($category as $c) {
+    		foreach ($c->product as $p) {
+    			$post[] = $p;
+    		}
+    	}
+    	$posts = collect($post);
+    	
+
+	    $currentPage = LengthAwarePaginator::resolveCurrentPage();
+
+	    $perPage = 12;
+	    $currentPageItems = $posts->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
+ 
+        // Create our paginator and pass it to the view
+        $paginatedItems= new LengthAwarePaginator($currentPageItems , count($posts), $perPage);
+ 
+        // set url path for generted links
+        $paginatedItems->setPath($request->url());
+ 
+	    return view('index-single-category')->with('posts', $paginatedItems)
+	    ->with('cat', $cat);
     }
 }

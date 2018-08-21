@@ -71,8 +71,34 @@
               
           </tbody>
         </table>
+        <br>
+        <br>
+        <br>
+        <table class="table">
+            <tr>
+                <th colspan="5">&nbsp;</th>
+                <td class="w-25">Subtotal</td>
+                <td class="w-25">{{ Cart::total() }}</td>
+            </tr>
+            <tr>
+                <th colspan="5">&nbsp;</th>
+                <td class="w-25">Total</td>
+                <td class="w-25">{{ Cart::total() }}</td>
+            </tr>
+        </table>
+        <br>
+        <div class="d-flex justify-content-between">
+            <div>
+                <a href="{{ route('index') }}" class="btn btn-outline-info">back shopping</a>
+            </div>
 
+            <div>
+                <a href="{{ route('customer.checkout') }}" class="btn btn-success">checkout</a>
+            </div>
+        </div>
     </div>   
 </div>
+
+
 
 @endsection

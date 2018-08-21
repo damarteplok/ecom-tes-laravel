@@ -20,21 +20,21 @@
 
                 {{ Auth::shouldUse('customer') }}
 
-                <li class="nav-item active">
+                    <li class="nav-item active">
                         <a href="{{ route('index') }}" class="nav-link"></a>
                     </li>
 
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="{{-- {{ route('login') }} --}}">Basket</a>
+                        <a class="nav-link" href="{{ route('cart') }}">Basket</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{-- {{ route('register') }} --}}">Checkout</a>
+                        <a class="nav-link" href="{{ route('customer.checkout') }}">Checkout</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{-- {{ route('register') }} --}}">Payment Confirmation</a>
+                        <a class="nav-link" href="{{ route('payment.confirm') }}">Payment Confirmation</a>
                     </li>
 
                     <li class="nav-item">
@@ -42,7 +42,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{-- {{ route('register') }} --}}">Logout</a>
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                        </a>
+                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                     </li>
 
                    {{--  <li class="nav-item dropdown">
@@ -64,17 +70,22 @@
                     </li> --}}
 
                 @else
+
                     <li class="nav-item active">
                         <a href="{{ route('index') }}" class="nav-link">Home</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('payment.confirm') }}">Payment Confirmation</a>
+                    </li>
+
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('customer.login') }}">{{ __('Login') }}</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link" href="{{ route('regis.customer') }}">{{ __('Register') }}</a>
                     </li>
 
                     

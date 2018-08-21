@@ -11,85 +11,88 @@
 
 				<div class="card-header">
 					
-					<span>Customer</span>
+					<span>Customer : {{ $customer->name }}</span>
 					{{-- <a href="{{ route('products.create') }}" class="btn btn-outline-success btn-sm float-right">Add</a> --}}
 
 				</div>
 
 				<div class="card-body">
 
+					@if($order->count() > 0)
+
 					<table class="table table-striped">
+
+
+					  @foreach($order as $o)
+
+					  <caption>Invoice : {{ $o->invoice_creation_date }}</caption>
 					  
 					  <thead>
 
 					    <tr>
-					      <th scope="col">Name</th>
-					      <th scope="col">Joined_at</th>
-					      <th scope="col">View</th>
-					      <th scope="col">Edit</th>
-					      <th scope="col">Delete</th>
+					      <th scope="col">Item/Desc</th>
+					      <th scope="col">Qty</th>
+					      <th scope="col">@</th>
+					      <th scope="col">Price</th>
+					      
 					    </tr>
 
 					  </thead>
 					  
 					  <tbody>
 
-					  	@if($customer->count() > 0)
-
-						  	@foreach($customer as $p)
-						    
+					  	@foreach($order->order_product as $ p)
+						   
 						    <tr>
-						    	<td class="align-middle">{{ $p->name }}</td>
-						    	<td class="align-middle">{{ $p->created_at }}</td>
+						    	<td>{{ $p->product->name }}</td>
+						    	<td>{{ $p->qty }}</td>
 						    	
 
-						      	<td class="align-middle">
-						      		
-						      		<a href="{{ route('customer.view', ['id' => $p->id]) }}" class="btn btn-success btn-sm">
-						      			History
-						      		</a>
+						      	<td>
+						      		{{ $p->product->price }}
 						      	</td>
 
-						      	<td class="align-middle">
-						      		
-						      		<a href="{{ route('customer.edit', ['id' => $p->id]) }}" class="btn btn-info btn-sm">
-						      			Edit
-						      		</a>
-						      	</td>
-
-						      	<td class="align-middle">
-						      		
-						      		<form action="{{ 
-		                                route('customer.destroy', 
-		                                ['id' => $p->id]) 
-		                            }}" 
-	                                method="post">
-	                                    {{ csrf_field() }}
-	                                    {{ method_field('DELETE') }}
-	                                    <button 
-	                                    class="btn btn-sm btn-danger" 
-	                                    type="submit">Destroy</button>
-	                                </form>
-
-
-						      	</td>
+						      	<td>
+						      		Price
+						        </td>
 
 
 
 						    </tr>
 						    
-						    @endforeach
+						@endforeach
 
-						    {!! $customer->render() !!}
+						    <tr>
+						    	<th colspan="3">Subtotal</th>
+						    	<td>1231</td>
+						    </tr>
 
-						@else
+						    <tr>
+						    	<th colspan="2">Tax</th>
+						    	<td>7%</td>
+						    	<td>13213</td>
+						    </tr>
 
-								<th colspan="7" class="text-center"> No Products</th>
+						    <tr>
+						    	<th colspan="3">Total</th>
+						    	<td>1231</td>
+						    </tr>
 
-						@endif
+						
 					      
 					  </tbody>
+					
+					@endforeach
+					 
 					</table>
+					
+					@else
+						<table>
+							<th colspan="4" class="text-center"> No Products</th>
+						</table>
+								
+
+					@endif
 
 				</div>
 			</div>
@@ -99,3 +102,4 @@
 
 
 @stop
+

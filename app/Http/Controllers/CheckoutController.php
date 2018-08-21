@@ -12,15 +12,17 @@ use Mail;
 class CheckoutController extends Controller
 {
     //
+
+
     public function index()
     {
 
     	if(Cart::content()->count() == 0)
     		{
     			Session::flash('info', 'Your cart is still empty, do some shoping');
-    			return redirect()->back();
+    			return redirect()->route('index');
     		}
-    	return view('checkout');
+    	return view('checkout2');
     }
 
     public function pay()
@@ -45,7 +47,7 @@ class CheckoutController extends Controller
 
     	Mail::to(request()->stripeEmail)->send(new \App\Mail\PurchaseSuccesfull);
 
-    	return redirect('/');
+    	return redirect('index');
 
     }
 }

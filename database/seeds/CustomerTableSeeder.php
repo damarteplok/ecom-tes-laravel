@@ -18,6 +18,7 @@ class CustomerTableSeeder extends Seeder
         	'alamat' => 'suburan 74',
         	'nohp' => '081220071754',
         	'email' => 'mie.yaminasin@gmail.com',
+            'password' => bcrypt('password'),
         	
         ];
 

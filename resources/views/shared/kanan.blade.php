@@ -29,7 +29,7 @@
 
 		@else
 		idr {{ Cart::total() }}
-		<a href="{{ route('cart') }}"><p style="display: inline">checkout</p>
+		<a href="{{ route('customer.checkout') }}"><p style="display: inline">checkout</p>
 		</a>
 		@endif
 	</div>

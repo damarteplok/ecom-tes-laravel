@@ -22,10 +22,10 @@ Route::get('/', [
 
 ]);
 
-Route::get('/product/{id}', [
+Route::get('/product/category/{id}', [
 
-	'uses' => 'FrontEndController@singleProduct',
-	'as' => 'product.single'
+	'uses' => 'FrontEndController@index_single_category',
+	'as' => 'product.index.single.category'
 
 ]);
 
@@ -72,19 +72,7 @@ Route::get('/cart/rapid/add/{id}', [
 
 ]);
 
-Route::get('/cart/checkout', [
 
-	'uses' => 'CheckoutController@index',
-	'as' => 'cart.checkout'
-
-]);
-
-Route::post('/cart/checkout', [
-
-	'uses' => 'CheckoutController@pay',
-	'as' => 'cart.checkout'
-
-]);
 
 
 Route::get('/about', 'PagesController@about')->name('about');
@@ -93,6 +81,21 @@ Route::get('/faq', 'PagesController@faq')->name('faq');
 Route::get('/policy', 'PagesController@policy')->name('policy');
 Route::get('/term', 'PagesController@term')->name('term');
 Route::get('/howto', 'PagesController@howto')->name('howto');
+
+Route::get('/payment/confirm', 'PagesController@paymentconfirm')->name('payment.confirm');
+
+Route::post('/payment/confirms/store', [
+
+	'uses' => 'PagesController@paymentStore',
+	'as' => 'payment.store2'
+
+]);
+
+Route::get('/paymentconfirm', 'PaymentConfirmController@index')->name('payment.index');
+Route::get('/paymentconfirm/detail/{id}', 'PaymentConfirmController@detail')->name('payment.detail');
+Route::get('/paymentconfirm/delete/{id}', 'PaymentConfirmController@destroy')->name('payment.destroy');
+Route::get('/paymentconfirm/change/status/{id}', 'PaymentConfirmController@change')->name('payment.change');
+
 
 Route::get('login/facebook', 'Auth\AuthController@redirectToFacebook');
 Route::get('login/facebook/callback', 'Auth\AuthController@getFacebookCallback');
@@ -112,6 +115,7 @@ Route::resource('tag', 'TagController');
 Route::resource('optional', 'OptionalController');
 Route::resource('customer', 'CustomerController');
 Route::resource('order', 'OrderController');
+
 
 Route::get('photo/gallery/', [
 
@@ -175,6 +179,47 @@ Route::get('customer/history/{id}', [
 	'uses' => 'CustomerController@history',
 	'as' => 'customer.view'
 ]);
+
+
+Route::prefix('customer')->group(function() {
+
+
+	Route::get('/customer/login', 'Auth\CustomerLoginController@showLoginForm')->name('customer.login');
+	Route::post('/customer/login', 'Auth\CustomerLoginController@login')->name('customer.login.submit');
+
+	Route::get('/customer/registrasi', 'CustomerssController@index')->name('regis.customer');
+
+	Route::post('/customer/store',[
+
+		'uses' => 'CustomerssController@store',
+		'as' => 'customer.store'
+			
+	]);
+
+	Route::get('/customer/checkout', [
+
+		'uses' => 'CheckoutController@index',
+		'as' => 'customer.checkout'
+
+	]);
+
+	Route::post('/customer/pay', [
+
+		'uses' => 'CheckoutController@pay',
+		'as' => 'customer.pay'
+
+	]);
+
+	Route::post('/customer/password/email','Auth\CustomerForgotPasswordController@sendResetLinkEmail')->name('customer.password.email');
+    Route::get('/customer/password/reset','Auth\CustomerForgotPasswordController@showLinkRequestForm')->name('customer.password.request');
+    Route::post('/customer/password/reset','Auth\CustomerResetPasswordController@reset');
+    Route::get('/customer/password/reset/{token}','Auth\CustomerResetPasswordController@showResetForm')->name('customer.password.reset');
+
+    
+
+
+
+});
 
 
 

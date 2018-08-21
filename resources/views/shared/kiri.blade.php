@@ -7,7 +7,7 @@
 		@foreach($categoryall as $c)
 	    <li class="list-group-item dropright ">
 	    
-	    <a href="#">{{ $c->name }}</a>
+	    <a href="{{ route('product.index.single.category', ['id' => $c->id]) }}">{{ $c->name }}</a>
 	    <a href="" class="dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false""></a>
 		    <div class="dropdown-menu" >
 		    	@foreach($c->subcategory as $s)

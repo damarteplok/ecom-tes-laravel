@@ -3,29 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PaymentConfirm;
 use Session;
-use App\Customer;
-use App\Order;
-use App\Product;
+use Auth;
 
-class CustomerController extends Controller
+class PaymentConfirmController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function __construct()
     {
         $this->middleware('auth');
     }
-
     public function index()
     {
         //
-        return view('admin.customer.index')
-        ->with('customer', Customer::simplePaginate(10));
+        return view('admin.paymentconfirm.index')->with('p', PaymentConfirm::simplePaginate(10));
     }
 
     /**
@@ -69,10 +65,6 @@ class CustomerController extends Controller
     public function edit($id)
     {
         //
-        $c = Customer::find($id);
-
-        return view('admin.customer.edit')
-        ->with('customer', $c);
     }
 
     /**
@@ -85,25 +77,6 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request, [
-
-            'name' => 'required',
-            'alamat' => 'required',
-            'nohp' => 'required|numeric',
-            'email' => 'required|email'
-
-        ]);
-
-        $c = Customer::find($id);
-        $c->name = $request->name;
-        $c->alamat = $request->alamat;
-        $c->nohp = $request->nohp;
-        $c->email = $request->email;
-        $c->save();
-
-        Session::flash('success', 'Customer Updated');
-
-        return redirect()->route('customer.index');
     }
 
     /**
@@ -115,20 +88,42 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+        PaymentConfirm::destroy($id);
 
-        Customer::destroy($id);
-
-        Session::flash('success', 'Customer deleted');
-
-        return redirect()->route('customer.index');
-        
+        Session::flash('success', 'Deleted success');
+        return redirect()->back();
     }
 
-    public function view($id)
+    public function detail($id)
+    {
+        $p = PaymentConfirm::find($id);
 
+        return view('admin.paymentconfirm.detail')->with('t', $p);
+    }
+
+    public function change($id)
     {
 
-        return view('admin.customer.history');
+        $p = PaymentConfirm::find($id);
+
+        if($p->status == 0)
+        {
+            $p->status = 1;
+            $p->save();
+
+            Session::flash('success', 'Change success');
+            return redirect()->back();
+
+        } else
+        
+        {
+            $p->status = 0;
+            $p->save();
+
+            Session::flash('success', 'Change success');
+            return redirect()->route('payment.index');
+        }
+        
+           
     }
-    
 }

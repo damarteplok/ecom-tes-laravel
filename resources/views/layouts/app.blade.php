@@ -127,6 +127,8 @@
                               <ul>
                                 <li><a href="{{-- {{ route('tags') }} --}}">Orders</a>
                                 </li>
+                                <li><a href="{{ route('payment.index') }}">Payments</a>
+                                </li>
                                                                                                
                               </ul>
                           </div>
