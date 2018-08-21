@@ -16,7 +16,7 @@ class ShoppingController extends Controller
     {
     	//dd(request()->all());
 
-    	$pdt = Product::find(request()->pdt_id);
+    	$pdt = Product::find(request()->id);
 
     	$cartItem = Cart::add([
 

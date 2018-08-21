@@ -91,11 +91,11 @@
                 
                     @foreach($tag as $t)
                     <div class="card">
-                        <a href="">
+                        <a href="{{ route('product.single', ['id' => $t->id]) }}">
                         <img class="card-img-top" style="width: 13rem; height: 12rem;" src="{{ asset($t->image) }}" alt="Card image cap">
                         </a>
                         <div class="card-body text-center">
-                            <a href="">
+                            <a href="{{ route('product.single', ['id' => $t->id]) }}">
                             <h5 class="card-title" >
                                 {{ $t->name }}
                             </h5>
@@ -161,11 +161,11 @@
                     @foreach($tag2 as $t)
                     
                     <div class="card">
-                        <a href="">
+                        <a href="{{ route('product.single', ['id' => $t->id]) }}">
                         <img class="card-img-top" src="{{ asset($t->image) }}" alt="Card image cap">
                         </a>
                         <div class="card-body text-center">
-                            <a href="">
+                            <a href="{{ route('product.single', ['id' => $t->id]) }}">
                             <h5 class="card-title" >
                                 {{ $t->name }}
                             </h5>
@@ -230,11 +230,11 @@
                     @foreach($product as $t)
                     
                     <div class="card" style="max-width: 16rem;">
-                        <a href="">
+                        <a href="{{ route('product.single', ['id' => $t->id]) }}">
                         <img class="card-img-top" style="width: 13.4rem; height: 12rem;" src="{{ asset($t->image) }}" alt="Card image cap">
                         </a>
                         <div class="card-body text-center">
-                            <a href="">
+                            <a href="{{ route('product.single', ['id' => $t->id]) }}">
                             <h5 class="card-title" >
                                 {{ $t->name }}
                             </h5>

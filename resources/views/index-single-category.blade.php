@@ -16,11 +16,11 @@
 					@foreach($posts as $p)
 
                     <div class="card" style="max-width: 16rem;">
-                        <a href="">
+                        <a href="{{ route('product.single', ['id' => $p->id]) }}">
                         <img class="card-img-top" style="width: 13.4rem; height: 12rem;" src="{{ asset($p->image) }}" alt="Card image cap">
                         </a>
                         <div class="card-body text-center">
-                            <a href="">
+                            <a href="{{ route('product.single', ['id' => $p->id]) }}">
                             <h5 class="card-title" >
                                 {{ $p->name }}
                             </h5>

@@ -64,4 +64,25 @@ class FrontEndController extends Controller
 	    return view('index-single-category')->with('posts', $paginatedItems)
 	    ->with('cat', $cat);
     }
+
+    public function index_single_subcategory(Request $request, $id)
+    {
+
+
+    	$cat = SubCategory::find($id);
+    	
+    	$posts = $cat->product()->orderBy('created_at', 'desc')->paginate(12);
+
+    	return view('index-single-subcategory')->with('cat', $cat)
+    	->with('posts', $posts);
+
+
+
+    }
+
+    public function single($id)
+    {
+    	$p = Product::find($id);
+    	return view('single2')->with('p', $p);
+    }
 }

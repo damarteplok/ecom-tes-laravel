@@ -11,7 +11,7 @@
 	    <a href="" class="dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false""></a>
 		    <div class="dropdown-menu" >
 		    	@foreach($c->subcategory as $s)
-		          <a class="dropdown-item" href="#">{{ $s->name }}</a>
+		          <a class="dropdown-item" href="{{ route('product.index.single.subcategory', ['id' => $s->id]) }}">{{ $s->name }}</a>
 		        @endforeach
 	        </div>
 		</li>

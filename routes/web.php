@@ -29,6 +29,20 @@ Route::get('/product/category/{id}', [
 
 ]);
 
+Route::get('/product/subcategory/{id}', [
+
+	'uses' => 'FrontEndController@index_single_subcategory',
+	'as' => 'product.index.single.subcategory'
+
+]);
+
+Route::get('/product/single/{id}', [
+
+	'uses' => 'FrontEndController@single',
+	'as' => 'product.single'
+
+]);
+
 Route::post('/cart/add', [
 
 	'uses' => 'ShoppingController@add_to_cart',
