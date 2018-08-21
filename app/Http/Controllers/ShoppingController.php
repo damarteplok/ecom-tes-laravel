@@ -16,6 +16,15 @@ class ShoppingController extends Controller
     {
     	//dd(request()->all());
 
+        if(request()->qty <= 0)
+
+        {
+
+        Session::flash('info', 'minimal 1');
+
+        return redirect()->back();    
+        } else {
+
     	$pdt = Product::find(request()->id);
 
     	$cartItem = Cart::add([
@@ -33,6 +42,7 @@ class ShoppingController extends Controller
     	Session::flash('success', 'Product added to cart');
 
     	return redirect()->route('cart');
+        }
     }
 
     public function cart()

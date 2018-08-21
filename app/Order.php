@@ -19,10 +19,10 @@ class Order extends Model
 
     public function customer()
     {
-    	$this->belongsTo('App\Customer');
+    	return $this->belongsTo('App\Customer', 'customer_id');
     }
     public function product()
     {
-    	$this->belongsToMany('App\Product')->withPivot('quantity');
+    	return $this->belongsToMany('App\Product')->withPivot('quantity');
     }
 }
