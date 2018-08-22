@@ -125,18 +125,17 @@
                           <a data-toggle="collapse" href="#formsExamples2" aria-expanded="true" class="">Sales</a>
                           <div class="collapse in" id="formsExamples2" aria-expanded="true" style="">
                               <ul>
-                                <li><a href="{{-- {{ route('tags') }} --}}">Orders</a>
+                                <li><a href="{{ route('order.index') }}">Orders</a>
                                 </li>
-                                <li><a href="{{ route('payment.index') }}">Payments</a>
-                                </li>
+                                
                                                                                                
                               </ul>
                           </div>
                         </li>
 
                         <li class="p-1 pl-5">
-                          <a data-toggle="collapse" href="#formsExamples3" aria-expanded="true" class="">Customers</a>
-                          <div class="collapse in" id="formsExamples3" aria-expanded="true" style="">
+                          <a data-toggle="collapse" href="#formsExamples4" aria-expanded="true" class="">Customers</a>
+                          <div class="collapse in" id="formsExamples4" aria-expanded="true" style="">
                               <ul>
                                 <li><a href="{{ route('customer.index') }}">Member</a>
                                 </li>
@@ -146,7 +145,16 @@
                         </li>
 
                         <li class="p-1 pl-5">
-                          <a href="{{-- {{ route('home') }} --}}">Report</a>
+                            <a data-toggle="collapse" href="#formsExamples3" aria-expanded="true" class="">Report</a>
+                              <div class="collapse in" id="formsExamples3" aria-expanded="true" style="">
+                                  <ul>
+                                    
+                                    <li><a href="{{ route('payment.index') }}">Payments</a>
+                                    </li>
+                                                                                                   
+                                  </ul>
+                              </div>
+                          
                         </li>
                     </ul>
                 </div>

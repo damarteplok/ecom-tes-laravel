@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
+use App\Order;
 
 class OrderController extends Controller
 {
@@ -11,9 +13,18 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
+        $order = Order::orderBy('created_at','desc')->simplePaginate(10);
+
+        return view('admin.order.index')->with('order', $order);
     }
 
     /**
@@ -57,6 +68,10 @@ class OrderController extends Controller
     public function edit($id)
     {
         //
+        $order = Order::find($id);
+        $o = $order->product ;
+        return view('admin.order.view')->with('order', $order)
+        ->with('p', $o);
     }
 
     /**
@@ -80,5 +95,9 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+        Order::destroy($id);
+        Session::flash('success', 'Deleted');
+
+        return redirect()->back();
     }
 }
