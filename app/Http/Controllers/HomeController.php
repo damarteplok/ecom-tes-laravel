@@ -85,6 +85,7 @@ class HomeController extends Controller
                 
                 
             }
+            $totalday = $totalday/1000;
             $perdayorder[] = $totalday;
                
         }
