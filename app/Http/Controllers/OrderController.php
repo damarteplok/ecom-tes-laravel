@@ -100,4 +100,31 @@ class OrderController extends Controller
 
         return redirect()->back();
     }
+
+    public function status($id)
+
+    {
+        $o = Order::find($id);
+        
+        if($o->status == 0)
+        {
+            $o->status = 1;
+            $o->save();
+            Session::flash('success', 'updated');
+
+            return redirect()->back();
+
+        } else {
+
+            $o->status = 0;
+            $o->save();
+            Session::flash('success', 'updated');
+
+            return redirect()->back();
+
+        }
+
+        
+
+    }
 }

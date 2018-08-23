@@ -130,6 +130,8 @@ Route::resource('optional', 'OptionalController');
 Route::resource('customer', 'CustomerController');
 Route::resource('order', 'OrderController');
 
+Route::get('change/order/stat/{id}', 'OrderController@status')->name('order.status');
+
 
 Route::get('photo/gallery/', [
 

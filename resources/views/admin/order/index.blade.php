@@ -24,6 +24,7 @@
 	      <th scope="col">Order</th>
 	      <th scope="col">created_at</th>
 	      <th scope="col">view</th>
+	      <th scope="col">Change Stat</th>
 	      {{-- <th scope="col">Delete</th> --}}
 	    </tr>
 	  </thead>
@@ -48,6 +49,16 @@
 	      		<a href="{{ route('order.edit', ['id' => $o->id]) }}" class="btn btn-info btn-sm">
 	      			View
 	      		</a>
+
+	      </td>
+
+	      <td>
+	      	@if($o->status == 0)
+	      		<a href="{{ route('order.status', ['id' =>$o->id]) }}" class="btn btn-outline-success">Paid</a>
+			@else
+	      		<a href="{{ route('order.status', ['id' =>$o->id]) }}" class="btn btn-outline-danger">Not Paid</a>
+			@endif
+
 
 	      </td>
 
